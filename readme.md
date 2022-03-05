@@ -33,7 +33,7 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 
 |#|paper|model |clean<br>(acc)|AA<br>(acc)|AA<br>(->)|AA<br>(<-)|A3<br>(acc)|A3<br>(->)|A3<br>(<-)|
 |:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
-|**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN\ -70-16| 91.10| 65.88| 51.2 | 12.9 | **65.76(0.12)** | | |
+|**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN -70-16| 91.10| 65.88| 51.2 | 12.9 | **65.76(0.12)** | | |
 |**2**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946) | WRN-70-16 | 88.54 | 64.25 | 50.8 | 12.6 |  | | |
 |**3**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-28-10| 89.48| 62.80| 49.6 | 12.3 | **62.71(0.09)** | | |
 |**4**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946)    | WRN-28-10 | 87.33 | 60.75 | 48.0 | 11.9 | **60.65(0.10)** | **4.14(11.59)** | **2.04(5.83)** |
@@ -116,8 +116,8 @@ The robust accuracy is computed at `eps = 0.3` in the Linf-norm.
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-|   #    | paper                                                        | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A3<br>(acc)  |A3<br>(->)  |A3<br>(<-)  |
-|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
+|   #    | paper  | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A3<br>(acc)  |A3<br>(->)  |A3<br>(<-)  |
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)| 99.26| 96.34|  76.05 | 18.44  | **96.31(0.03)** | **6.53(11.64)** | **3.22(5.72)** |
 |**2**| [(Zhang et al., 2020a)](https://arxiv.org/abs/1906.06316)| 98.38| 93.96| | | | | |
 |**3**| [(Gowal et al., 2019)](https://arxiv.org/abs/1810.12715)| 98.34| 92.83| | | | | |
