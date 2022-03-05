@@ -31,9 +31,9 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10e6), while the “**<-**” column shows the iteration number of backward propagation(**million**,10e6). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-|#    |paper           |model |clean         |AA(acc)  | AA(->) |AA(<-)  |A3(acc)  |A3(->)  |A3(<-)  |
-|:---:|---|:---:|---:|---:|-----|-----|-----|-----|-----|
-|**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-70-16| 91.10| 65.88| 51.2 | 12.9 | **65.76(0.12)** | | |
+|#|paper|model |clean<br>(acc)|AA<br>(acc)|AA<br>(->)|AA<br>(<-)|A3<br>(acc)|A3<br>(->)|A3<br>(<-)|
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
+|**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN\ -70-16| 91.10| 65.88| 51.2 | 12.9 | **65.76(0.12)** | | |
 |**2**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946) | WRN-70-16 | 88.54 | 64.25 | 50.8 | 12.6 |  | | |
 |**3**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-28-10| 89.48| 62.80| 49.6 | 12.3 | **62.71(0.09)** | | |
 |**4**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946)    | WRN-28-10 | 87.33 | 60.75 | 48.0 | 11.9 | **60.65(0.10)** | **4.14(11.59)** | **2.04(5.83)** |
@@ -93,8 +93,8 @@ The robust accuracy is computed at `eps = 8/255` in the Linf-norm, except for th
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The  “acc”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-|   #    | paper                                                        |   model   | clean | AA(acc) | AA(->) | AA(<-) |         A3(acc) |A3(->)  |A3(<-)  |
-|:---:|---|:---:|---:|-----|-----|-----|-----|-----|-----|
+|   #    | paper                                                        |   model   | clean<br>(acc) | AA<br>(acc) | AA<br>(->) | AA<br>(<-) |         A3(acc) |A3(->)  |A3(<-)  |
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al. 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-70-16| 69.15| 36.88| 29.8 | 7.4 | **36.86(0.02)** | **2.54(11.73)** | **1.24(5.97)** |
 |**2**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946) | WRN-70-16 | 63.56 | 34.64 | 28.0 | 7.0 | | | |
 |**3**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946) | WRN-28-10 | 62.41 | 32.06 | 25.5 | 6.5 | **31.99(0.07)** | **2.24(11.38)** | **1.10(5.9)** |
@@ -116,8 +116,8 @@ The robust accuracy is computed at `eps = 0.3` in the Linf-norm.
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-|   #    | paper                                                        | clean | AA(acc) |AA(->)  |AA(<-)  |A3(acc)  |A3(->)  |A3(<-)  |
-|:---:|---|---:|---:|---:|----|----|----|----|
+|   #    | paper                                                        | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A3<br>(acc)  |A3<br>(->)  |A3<br>(<-)  |
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)| 99.26| 96.34|  76.05 | 18.44  | **96.31(0.03)** | **6.53(11.64)** | **3.22(5.72)** |
 |**2**| [(Zhang et al., 2020a)](https://arxiv.org/abs/1906.06316)| 98.38| 93.96| | | | | |
 |**3**| [(Gowal et al., 2019)](https://arxiv.org/abs/1810.12715)| 98.34| 92.83| | | | | |
@@ -138,8 +138,8 @@ The robust accuracy is computed at `eps = 0.5` in the L2-norm.
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-|   #    | paper                                                        |   model   | clean | AA(acc) |AA(->)  |AA(<-)  |A3(acc)  |A3(->)  |A3(<-)  |
-|:---:|---|:---:|---:|---:|-----|-----|-----|-----|-----|
+|   #    | paper                                                        |   model   | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A3<br>(acc)  |A3<br>(->)  |A3<br>(<-)  |
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-70-16| 94.74| 80.53| | | | | |
 |**2**| [(Rebuffi et al.,2021)](https://arxiv.org/abs/2103.01946) | WRN-28-10 | 91.79 | 78.80 | 62.00 | 15.20 | **78.79(0.01)** | **5.35(11.59)** | **2.63(5.78)** |
 | **3**  | [(Sehwag et al.,2021)](https://aisecure-workshop.github.io/aml-iclr2021/papers/39.pdf) | WRN-34-10 | 90.31 | 76.11 | 59.89 | 14.69 | **76.10(0.01)** | **5.18(11.56)** | **2.55(5.76)** |
@@ -159,8 +159,8 @@ The robust accuracy is computed at `eps = 4/255` in the Linf-norm.
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-| #     | paper                                                        | architecture | clean | AA(acc)   | AA(->) | AA(<-) | A3(acc)         | A3(->)         | A3(<-)          |
-| ----- | ------------------------------------------------------------ | ------------ | ----- | --------- | ------ | ------ | --------------- | -------------- | --------------- |
+| #     | paper                                                        | model | clean<br>(acc) | AA<br>(acc)   | AA<br>(->) | AA<br>(<-) | A3<br>(acc)         | A3<br>(->)         | A3<br>(<-)          |
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
 | **1** | [(Wong et al.,2020)](https://arxiv.org/abs/2001.03994)       | RN-50        | 55.62 | **26.24** |        |        | 26.36           | 2.03           | 1.00            |
 | **2** | [(Engstrom, et al.,2019)](https://github.com/MadryLab/robustness) | RN-50        | 62.50 | 29.18     | 11.66  | 2.98   | **29.14(0.04)** | **2.19(5.32)** | **1.08(2.76)**  |
 | **3** | [(Salman et al.,2020)](https://arxiv.org/abs/2007.08489)     | WRN-50-2     | 68.46 | 38.14     | 15.15  | 3.82   | **3812(0.02)**  | **2.67(5.67)** | **1.31(2.90)**  |
@@ -176,8 +176,8 @@ The robust accuracy is computed at `eps = 3.0` in the L2-norm.
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-| #     | paper                                                    | architecture | clean | AA(acc) | AA(->) | AA(<-) | A3(acc)         | A3(->)         | A3(<-)         |
-| ----- | -------------------------------------------------------- | ------------ | ----- | ------- | ------ | ------ | --------------- | -------------- | -------------- |
+| #     | paper                                                    | model | clean<br>(acc) | AA<br>(acc) | AA<br>(->) | AA<br>(<-) | A3<br>(acc)         | A3<br>(->)         | A3<br>(<-)         |
+|:---:|---|:---:|---:|---:|:---:|:---:|:---:|:---:|:---:|
 | **1** | [(Salman et al.,2020)](https://arxiv.org/abs/2007.08489) | DenseNet-161 | 66.14 | 36.52   | 14.51  | 3.67   | **36.50(0.02)** | **2.59(5.60)** | **1.28(2.87)** |
 | **2** | [(Salman et al.,2020)](https://arxiv.org/abs/2007.08489) | VGG16_BN     | 56.24 | 29.62   | 11.79  | 2.99   | **29.62(0.0)**  | **2.20(5.36)** | **1.08(2.77)** |
 | **3** | [(Salman et al.,2020)](https://arxiv.org/abs/2007.08489) | ShuffleNet   | 43.16 | 17.64   | 7.08   | 1.85   | **17.56(0.08)** | **1.58(4.48)** | **0.78(2.37)** |
