@@ -121,7 +121,7 @@ The robust accuracy is computed at `eps = 0.3` in the Linf-norm.
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)| 99.26| 96.34|  76.05 | 18.44  | **96.31(0.03)** | **6.53(11.64x)** | **3.22(5.72x)** |
 |**2**| [(Zhang et al., 2020a)](https://arxiv.org/abs/1906.06316)| 98.38| 93.96| | | | | |
 |**3**| [(Gowal et al., 2019)](https://arxiv.org/abs/1810.12715)| 98.34| 92.83| | | | | |
-|**4**| [(Zhang et al., 2019b)](https://arxiv.org/abs/1901.08573)| 99.48| 92.81|  73.12 | 17.88  | **92.71(0.05)** | **6.33(11.55x)** | **3.12(5.73x)** |
+|**4**| [(Zhang et al., 2019b)](https://arxiv.org/abs/1901.08573)| 99.48| 92.81|  73.12 | 17.88  | **92.71(0.10)** | **6.33(11.55x)** | **3.12(5.73x)** |
 |**5**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| 98.95| 91.40| | | | | |
 |**6**| [(Atzmon et al., 2019)](https://arxiv.org/abs/1905.11911)| 99.35| 90.85| | | | | |
 |**7**| [(Madry et al., 2018)](https://arxiv.org/abs/1706.06083)| 98.53| 88.50| | | | | |
