@@ -121,7 +121,7 @@ The robust accuracy is computed at `eps = 0.3` in the Linf-norm.
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)| 99.26| 96.34|  76.05 | 18.44  | **96.31(0.03)** | **6.53(11.64x)** | **3.22(5.72x)** |
 |**2**| [(Zhang et al., 2020a)](https://arxiv.org/abs/1906.06316)| 98.38| 93.96| | | | | |
 |**3**| [(Gowal et al., 2019)](https://arxiv.org/abs/1810.12715)| 98.34| 92.83| | | | | |
-|**4**| [(Zhang et al., 2019b)](https://arxiv.org/abs/1901.08573)| 99.48| 92.81|  73.12 | 17.88  | **92.71(0.10)** | **6.33(11.55x)** | **3.12(5.73x)** |
+|**4**| [(Zhang et al., 2019b)](https://arxiv.org/abs/1901.08573)| 99.48| 92.81|  73.12 | 17.88  | **92.71(0.10)** | **6.37(11.48x)** | **3.14(5.69x)** |
 |**5**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| 98.95| 91.40| | | | | |
 |**6**| [(Atzmon et al., 2019)](https://arxiv.org/abs/1905.11911)| 99.35| 90.85| | | | | |
 |**7**| [(Madry et al., 2018)](https://arxiv.org/abs/1706.06083)| 98.53| 88.50| | | | | |
@@ -183,3 +183,14 @@ The robust accuracy is computed at `eps = 3.0` in the L2-norm.
 | **3** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489) | ShuffleNet   | 43.16 | 17.64   | 7.08   | 1.85   | **17.56(0.08)** | **1.58(4.48x)** | **0.78(2.37x)** |
 | **4** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489) | MobileNet-V2 | 49.62 | 24.78   | 9.89   | 2.52   | **24.74(0.04)** | **1.94(5.10x)** | **0.95(2.65x)** |
 
+## How to use Adaptive Auto Attack
+### 1. Download testsets, decompress it, and put it in the "data/" directory.
+* Because test sets are loaded differently, you first need to download testsets from the following link (including MNIST, CIFAR10, CIFAR100, a subset of ImageNet)：https://drive.google.com/drive/folders/1rM0pRKB2GWY1CZ8wzpymhmWKiON0wYLV?usp=sharing
+### 2. Download defense models you need to test, and put it in the "model_weights/" directory.
+* Download models from Baidu online disk: 
+https://pan.baidu.com/s/1_pKv2OBGplSvoNNYdYBJgA \
+Extraction Code: "arej"
+
+### 3. Run "Adaptive_Auto_Attack_main.py"
+
+**Note**: The default batch size is running on RTX 3090 (24GB), if the graphics card memory is small, please adjust the batch size.
