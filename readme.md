@@ -52,7 +52,7 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 |**16**| [(Wu et al., 2020b)](https://arxiv.org/abs/2004.05884)| WRN-34-10| 85.36| 56.17| | | | | |
 |**17**| [(Alayrac et al., 2019)](https://arxiv.org/abs/1905.13725)‡| WRN-106-8| 86.46| 56.03| | | | | |
 |**18**| [(Hendrycks et al., 2019)](https://arxiv.org/abs/1901.09960)‡| WRN-28-10| 87.11| 54.92| 43.4 | 10.8 | **54.76(0.16)** | **3.73(11.64x)** | **1.83(5.90x)** |
-|19| [(Sehwag et al., 2021)](https://aisecure-workshop.github.io/aml-iclr2021/papers/39.pdf) | RN-18 | 84.38 | 54.43 | 43.2 | 10.7 | **54.31(0.12)** | **3.73(11.58x)** | **1.83(5.84x)** |
+|**19**| [(Sehwag et al., 2021)](https://aisecure-workshop.github.io/aml-iclr2021/papers/39.pdf) | RN-18 | 84.38 | 54.43 | 43.2 | 10.7 | **54.31(0.12)** | **3.73(11.58x)** | **1.83(5.84x)** |
 |**20**| [(Pang et al., 2020c)](https://arxiv.org/abs/2010.00467)| WRN-34-20| 86.43| 54.39| | | | | |
 |**21**| [(Pang et al., 2020b)](https://arxiv.org/abs/2002.08619)| WRN-34-20| 85.14| 53.74| 43.0 | 10.7 | **53.67(0.07)** | **3.68(11.68x)** | **1.81(5.91x)** |
 |**22**| [(Cui et al., 2020)](https://arxiv.org/abs/2011.11164)\*| WRN-34-20| 88.70| 53.57| 43.0 | 10.7 | **53.45(0.12)** | **3.67(11.72x)** | **1.80(5.94x)** |
@@ -64,8 +64,8 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 |**28**| [(Qin et al., 2019)](https://arxiv.org/abs/1907.02610v2)| WRN-40-8| 86.28| 52.84| | | | | |
 |**29**| [(Chen et al., 2020a)](https://arxiv.org/abs/2003.12862)| RN-50 (x3) | 86.04| 51.56| | | | | |
 |**30**| [(Chen et al., 2020b)](https://github.com/fra31/auto-attack/issues/26)| WRN-34-10| 85.32| 51.12| | | | | |
-|**31**| [(Addepalli, et al., 2022)](https://openreview.net/pdf?id=eFP90pzlIz) | RN-18 | 80.24 | 51.06 | 40.5 | 10.2 | **51.02(0.04)** | **3.49(11.60x)** | **1.71(5.96x)** |
-|**32**| [(Sitawarin et al., 2020)](https://github.com/fra31/auto-attack/issues/23)| WRN-34-10| 86.84| 50.72| 40.1 | 10.0 | **50.61(0.11)** | **3.48(11.53x)** | **1.71(5.85x)** |
+|**31**| [(Addepalli, et al., 2022)](https://openreview.net/pdf?id=eFP90pzlIz) | RN-18 | 80.24 | 51.06 | 40.5 | 10.2 | **51.02(0.04)** | **3.51(11.53x)** | **1.72(5.93x)** |
+|**32**| [(Sitawarin et al., 2020)](https://github.com/fra31/auto-attack/issues/23)| WRN-34-10| 86.84| 50.72| 40.1 | 10.0 | **50.61(0.11)** | **3.50(11.46x)** | **1.72(5.81x)** |
 |**33**| [(Engstrom et al., 2019)](https://github.com/MadryLab/robustness)| RN-50| 87.03| 49.25| 39.1 | 9.8 | **49.17(0.08)** | **3.40(11.49x)** | **1.67(5.87x)** |
 |**34**| [(Kumari et al., 2019)](https://arxiv.org/abs/1905.05186)| WRN-34-10| 87.80| 49.12| | | | | |
 |**35**| [(Mao et al., 2019)](http://papers.nips.cc/paper/8339-metric-learning-for-adversarial-robustness)| WRN-34-10| 86.21| 47.41| | | | | |
