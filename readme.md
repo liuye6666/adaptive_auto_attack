@@ -184,13 +184,23 @@ The robust accuracy is computed at `eps = 3.0` in the L2-norm.
 | **4** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489) | MobileNet-V2 | 49.62 | 24.78   | 9.89   | 2.52   | **24.74(0.04)** | **1.94(5.10x)** | **0.95(2.65x)** |
 
 ## How to use Adaptive Auto Attack
-### 1. Download testsets, decompress it, and put it in the "data/" directory.
+
+### 1. Installing dependency packages
+    pip install -r requirements.txt
+
+### 2. Download testsets, decompress it, and put it in the "data/" directory.
 * Because test sets are loaded differently, you first need to download testsets from the following link (including MNIST, CIFAR10, CIFAR100, a subset of ImageNet)：https://drive.google.com/drive/folders/1rM0pRKB2GWY1CZ8wzpymhmWKiON0wYLV?usp=sharing
-### 2. Download defense models you need to test, and put it in the "model_weights/" directory.
+### 3. Download defense models you need to test, and put it in the "model_weights/" directory.
 * Download models from Baidu online disk: 
 https://pan.baidu.com/s/1_pKv2OBGplSvoNNYdYBJgA \
-Extraction Code: "arej"
+Extraction Code: `arej`
 
-### 3. Run "Adaptive_Auto_Attack_main.py"
+### 4. Run "Adaptive_Auto_Attack_main.py"
 
 **Note**: The default batch size is running on RTX 3090 (24GB), if the graphics card memory is small, please adjust the batch size.
+
+## Demo
+1. Installing dependency packages\
+    `pip install -r requirements.txt`
+2. Run "Adaptive_Auto_Attack_main.py"\
+    Then you will get the result of TRADES MINIST
