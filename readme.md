@@ -73,8 +73,8 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 |**38**| [(Pang et al., 2020a)](https://arxiv.org/abs/1905.10626)| RN-32| 80.89| 43.48| | | | | |
 |**39**| [(Wong et al., 2020)](https://arxiv.org/abs/2001.03994)| RN-18| 83.34| 43.21| | | | | |
 |**40**| [(Shafahi et al., 2019)](https://arxiv.org/abs/1904.12843)| WRN-34-10| 86.11| 41.47| | | | | |
-|**41**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| WRN-28-4| 84.36| 41.44| 33.3 | 8.6 | **40.73(0.71)** | **2.86(11.64x)** | **1.40(6.14x)** |
-|**42**| [(Atzmon et al., 2019)](https://arxiv.org/abs/1905.11911)\*| RN-18| 81.30| 40.22| 32.7 | 8.7 | | | |
+|**41**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| WRN-28-4| 84.36| 41.44| 33.3 | 8.6 | **41.27(0.17)** | **10.51(3.17x)** | **5.19(1.66x)** |
+|**42**| [(Atzmon et al., 2019)](https://arxiv.org/abs/1905.11911)\*| RN-18| 81.30| 40.22| 32.7 | 8.7 |**39.83(0.39)** |**2.74(11.93x)** |**1.34(6.49x)** |
 |**43**| [(Moosavi-Dezfooli et al., 2019)](http://openaccess.thecvf.com/content_CVPR_2019/html/Moosavi-Dezfooli_Robustness_via_Curvature_Regularization_and_Vice_Versa_CVPR_2019_paper)| WRN-28-10| 83.11| 38.50| | | | | |
 |**44**| [(Zhang & Wang, 2019)](http://papers.nips.cc/paper/8459-defense-against-adversarial-attacks-using-feature-scattering-based-adversarial-training)| WRN-28-10| 89.98| 36.64| 30.0 | 8.2 | **36.31(0.33)** | **11.02(2.72x)** | **5.44(1.51x)** |
 |**45**| [(Zhang & Xu, 2020)](https://openreview.net/forum?id=Syejj0NYvr&noteId=Syejj0NYvr)| WRN-28-10| 90.25| 36.45| 30.0 | 8.5 | **36.21(0.24)** | **11.21(2.68x)** | **5.52(1.54x)** |
