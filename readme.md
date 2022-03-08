@@ -71,20 +71,21 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 |**35**| [(Mao et al., 2019)](http://papers.nips.cc/paper/8339-metric-learning-for-adversarial-robustness)| WRN-34-10| 86.21| 47.41| | | | | |
 |**36**| [(Zhang et al., 2019a)](https://arxiv.org/abs/1905.00877)| WRN-34-10| 87.20| 44.83| 35.6 | 9.0 | **44.77(0.06)** | **3.09(11.52x)** | **1.52(5.92x)** |
 |**37**| [(Madry et al., 2018)](https://arxiv.org/abs/1706.06083)| WRN-34-10| 87.14| 44.04|  |  | | | |
-|**38**| [(Pang et al., 2020a)](https://arxiv.org/abs/1905.10626)| RN-32| 80.89| 43.48| | | | | |
-|**39**| [(Wong et al., 2020)](https://arxiv.org/abs/2001.03994)| RN-18| 83.34| 43.21| | | | | |
-|**40**| [(Shafahi et al., 2019)](https://arxiv.org/abs/1904.12843)| WRN-34-10| 86.11| 41.47| | | | | |
-|**41**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| WRN-28-4| 84.36| 41.44| 33.3 | 8.6 | **41.27(0.17)** | **3.17(10.51x)** | **1.66(5.19x)** |
-|**42**| [(kundu et al., 2020)](https://arxiv.org/abs/2011.03083)| RN-18| 87.31| 40.41|  |  |**40.26(0.15)** |**2.81** |**1.38** |
-|**43**| [(Atzmon et al., 2019)](https://arxiv.org/abs/1905.11911)\*| RN-18| 81.30| 40.22| 32.7 | 8.7 |**39.83(0.39)** |**2.74(11.93x)** |**1.34(6.49x)** |
-|**44**| [(Moosavi-Dezfooli et al., 2019)](http://openaccess.thecvf.com/content_CVPR_2019/html/Moosavi-Dezfooli_Robustness_via_Curvature_Regularization_and_Vice_Versa_CVPR_2019_paper)| WRN-28-10| 83.11| 38.50| | | | | |
-|**45**| [(Zhang & Wang, 2019)](http://papers.nips.cc/paper/8459-defense-against-adversarial-attacks-using-feature-scattering-based-adversarial-training)| WRN-28-10| 89.98| 36.64| 30.0 | 8.2 | **36.31(0.33)** | **11.02(2.72x)** | **5.44(1.51x)** |
-|**46**| [(Zhang & Xu, 2020)](https://openreview.net/forum?id=Syejj0NYvr&noteId=Syejj0NYvr)| WRN-28-10| 90.25| 36.45| 30.0 | 8.5 | **36.21(0.24)** | **11.21(2.68x)** | **5.52(1.54x)** |
-|**47**| [(Jang et al., 2019)](http://openaccess.thecvf.com/content_ICCV_2019/html/Jang_Adversarial_Defense_via_Learning_to_Generate_Diverse_Attacks_ICCV_2019_paper.html)| RN-20| 78.91| 34.95| | | | | |
-|**48**| [(Kim & Wang, 2020)](https://openreview.net/forum?id=rJlf_RVKwr)| WRN-34-10| 91.51| 34.22| 28.2 | 7.8 | **34.06(0.16)** | **10.47(2.69x)** | **5.16(1.51x)** |
-|**49**| [(Wang & Zhang, 2019)](http://openaccess.thecvf.com/content_ICCV_2019/html/Wang_Bilateral_Adversarial_Training_Towards_Fast_Training_of_More_Robust_Models_ICCV_2019_paper.html)| WRN-28-10| 92.80| 29.35| | | | | |
-|**50**| [(Xiao et al., 2020)](https://arxiv.org/abs/1905.10510)\*| DenseNet-121| 79.28| 18.50| | | | | |
-|**51**| [(Jin & Rinard, 2020)](https://arxiv.org/abs/2003.04286v1) | RN-18| 90.84| 1.35| 3.1 | 2.3 | **0.89(0.46)** | **2.24(1.38x)** | **1.09(2.11x)** |
+|**38**| [(Andriushchenko & Flammarion, 2020)](https://arxiv.org/abs/2007.02617)| WRN-34-10| 79.85| 43.93|  |  |43.98 |3.03 |1.48 |
+|**39**| [(Pang et al., 2020a)](https://arxiv.org/abs/1905.10626)| RN-32| 80.89| 43.48| | | | | |
+|**40**| [(Wong et al., 2020)](https://arxiv.org/abs/2001.03994)| RN-18| 83.34| 43.21| | | | | |
+|**41**| [(Shafahi et al., 2019)](https://arxiv.org/abs/1904.12843)| WRN-34-10| 86.11| 41.47| | | | | |
+|**42**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| WRN-28-4| 84.36| 41.44| 33.3 | 8.6 | **41.27(0.17)** | **3.17(10.51x)** | **1.66(5.19x)** |
+|**43**| [(kundu et al., 2020)](https://arxiv.org/abs/2011.03083)| RN-18| 87.31| 40.41|  |  |**40.26(0.15)** |**2.81** |**1.38** |
+|**44**| [(Atzmon et al., 2019)](https://arxiv.org/abs/1905.11911)\*| RN-18| 81.30| 40.22| 32.7 | 8.7 |**39.83(0.39)** |**2.74(11.93x)** |**1.34(6.49x)** |
+|**45**| [(Moosavi-Dezfooli et al., 2019)](http://openaccess.thecvf.com/content_CVPR_2019/html/Moosavi-Dezfooli_Robustness_via_Curvature_Regularization_and_Vice_Versa_CVPR_2019_paper)| WRN-28-10| 83.11| 38.50| | | | | |
+|**46**| [(Zhang & Wang, 2019)](http://papers.nips.cc/paper/8459-defense-against-adversarial-attacks-using-feature-scattering-based-adversarial-training)| WRN-28-10| 89.98| 36.64| 30.0 | 8.2 | **36.31(0.33)** | **11.02(2.72x)** | **5.44(1.51x)** |
+|**47**| [(Zhang & Xu, 2020)](https://openreview.net/forum?id=Syejj0NYvr&noteId=Syejj0NYvr)| WRN-28-10| 90.25| 36.45| 30.0 | 8.5 | **36.21(0.24)** | **11.21(2.68x)** | **5.52(1.54x)** |
+|**48**| [(Jang et al., 2019)](http://openaccess.thecvf.com/content_ICCV_2019/html/Jang_Adversarial_Defense_via_Learning_to_Generate_Diverse_Attacks_ICCV_2019_paper.html)| RN-20| 78.91| 34.95| | | | | |
+|**49**| [(Kim & Wang, 2020)](https://openreview.net/forum?id=rJlf_RVKwr)| WRN-34-10| 91.51| 34.22| 28.2 | 7.8 | **34.00(0.22)** | **10.66(2.65x)** | **5.25(1.49x)** |
+|**50**| [(Wang & Zhang, 2019)](http://openaccess.thecvf.com/content_ICCV_2019/html/Wang_Bilateral_Adversarial_Training_Towards_Fast_Training_of_More_Robust_Models_ICCV_2019_paper.html)| WRN-28-10| 92.80| 29.35| | | | | |
+|**51**| [(Xiao et al., 2020)](https://arxiv.org/abs/1905.10510)\*| DenseNet-121| 79.28| 18.50| | | | | |
+|**52**| [(Jin & Rinard, 2020)](https://arxiv.org/abs/2003.04286v1) | RN-18| 90.84| 1.35| 3.1 | 2.3 | **0.89(0.46)** | **2.24(1.38x)** | **1.09(2.11x)** |
 
 ## CIFAR-100 - Linf
 The robust accuracy is computed at `eps = 8/255` in the Linf-norm, except for the models marked with * for which `eps = 0.031` is used. 
