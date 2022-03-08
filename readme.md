@@ -188,17 +188,17 @@ The robust accuracy is computed at `eps = 3.0` in the L2-norm.
 
 ## How to use Adaptive Auto Attack
 
-### 1. Installing dependency packages
+#### 1. Installing dependency packages
     pip install -r requirements.txt
 
-### 2. Download testsets, decompress it, and put it in the "data/" directory.
+#### 2. Download testsets, decompress it, and put it in the "data/" directory.
 * Because test sets are loaded differently, you first need to download testsets from the following link (including MNIST, CIFAR10, CIFAR100, a subset of ImageNet)：https://drive.google.com/drive/folders/1rM0pRKB2GWY1CZ8wzpymhmWKiON0wYLV?usp=sharing
-### 3. Download defense models you need to test, and put it in the "model_weights/" directory.
+#### 3. Download defense models you need to test, and put it in the "model_weights/" directory.
 * Download models from Baidu online disk: 
 https://pan.baidu.com/s/1_pKv2OBGplSvoNNYdYBJgA \
 Extraction Code: `arej`
 
-### 4. Run "Adaptive_Auto_Attack_main.py"
+#### 4. Run "Adaptive_Auto_Attack_main.py"
 
 **Note**: The default batch size is running on RTX 3090 (24GB), if the graphics card memory is small, please adjust the batch size.
 
