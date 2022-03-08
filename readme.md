@@ -161,15 +161,14 @@ The robust accuracy is computed at `eps = 4/255` in the Linf-norm.
 
 **Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
-| #     | paper                                                        | model | clean<br>(acc) | AA<br>(acc)   | AA<br>(->) | AA<br>(<-) | A3<br>(acc)         | A3<br>(->)         | A3<br>(<-)          |
+| #     | paper  | model | clean<br>(acc) | AA<br>(acc)   | AA<br>(->) | AA<br>(<-) | A3<br>(acc)         | A3<br>(->)         | A3<br>(<-)          |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-
-| **1** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | WRN-50-2     | 68.46 | 38.14     | 15.15  | 3.82   | **38.12(0.02)**  | **2.67(5.67x)** | **1.31(2.90x)**  |
+| **1** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | WRN-50-2     | 68.46 | 38.14     | 15.15  | 3.82   | **38.12(0.02)** | **2.67(5.67x)** | **1.31(2.90x)**  |
 | **2** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | RN-50        | 64.10 | 34.66     | 13.78  | 3.49   | **34.60(0.06)** | **2.47(5.58x)** | **1.22(2.86x)**  |
-| **3** | [(Engstrom, et al., 2019)](https://github.com/MadryLab/robustness) | RN-50        | 62.50 | 29.18     | 11.66  | 2.98   | **29.14(0.04)** | **2.19(5.32x)** | **1.08(2.76x)**  |
-| **4** | [(Wong et al., 2020)](https://arxiv.org/abs/2001.03994)       | RN-50        | 55.62 | **26.24** |        |        | 26.36           | 2.03           | 1.00            |
+| **3** | [(Engstrom, et al., 2019)](https://github.com/MadryLab/robustness) | RN-50   | 62.50 | 29.18     | 11.66  | 2.98   | **29.14(0.04)** | **2.19(5.32x)** | **1.08(2.76x)**  |
+| **4** | [(Wong et al., 2020)](https://arxiv.org/abs/2001.03994)       | RN-50        | 55.62 | **26.24** |        |        | 26.36           | 2.03           | 1.00              |
 | **5** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | RN-18        | 52.90 | 25.30     | 10.10  | 2.58   | **25.14(0.16)** | **1.96(5.15x)** | **0.96(2.69x)**  |
-| **6** | Undefended                                                   | RN-50        | 76.74 | 0.0       | 0.40   | 0.39   | **0.0**         | **0.02(20.0x)** | **0.005(78.0x)** |
+| **6** | Undefended                                                    | RN-50        | 76.74 | 0.0       | 0.40   | 0.39   | **0.0**         | **0.02(20.0x)** | **0.005(78.0x)** |
 
 ## ImageNet-L2
 
