@@ -71,7 +71,7 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 |**35**| [(Mao et al., 2019)](http://papers.nips.cc/paper/8339-metric-learning-for-adversarial-robustness)| WRN-34-10| 86.21| 47.41| | | | | |
 |**36**| [(Zhang et al., 2019a)](https://arxiv.org/abs/1905.00877)| WRN-34-10| 87.20| 44.83| 35.6 | 9.0 | **44.77(0.06)** | **3.09(11.52x)** | **1.52(5.92x)** |
 |**37**| [(Madry et al., 2018)](https://arxiv.org/abs/1706.06083)| WRN-34-10| 87.14| 44.04|  |  | | | |
-|**38**| [(Andriushchenko & Flammarion, 2020)](https://arxiv.org/abs/2007.02617)| WRN-34-10| 79.85| 43.93|  |  |43.98 |3.03 |1.48 |
+|**38**| [(Andriushchenko & Flammarion, 2020)](https://arxiv.org/abs/2007.02617)| WRN-34-10| 79.85| 43.93|  |  |43.92 |3.04 |1.49 |
 |**39**| [(Pang et al., 2020a)](https://arxiv.org/abs/1905.10626)| RN-32| 80.89| 43.48| | | | | |
 |**40**| [(Wong et al., 2020)](https://arxiv.org/abs/2001.03994)| RN-18| 83.34| 43.21| | | | | |
 |**41**| [(Shafahi et al., 2019)](https://arxiv.org/abs/1904.12843)| WRN-34-10| 86.11| 41.47| | | | | |
