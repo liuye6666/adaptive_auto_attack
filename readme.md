@@ -30,7 +30,7 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 
 **Note**: ‡ indicates models which exploit additional data for training (e.g. unlabeled data, pre-training).
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10e6), while the “**<-**” column shows the iteration number of backward propagation(**million**,10e6). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10^6), while the “**<-**” column shows the iteration number of backward propagation(**million**,10^6). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
 
 |#|paper|model |clean<br>(acc)|AA<br>(acc)|AA<br>(->)|AA<br>(<-)|A3<br>(acc)|A3<br>(->)|A3<br>(<-)|
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
