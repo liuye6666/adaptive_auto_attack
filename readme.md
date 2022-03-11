@@ -211,3 +211,14 @@ Extraction Code: `arej`
     `pip install -r requirements.txt`
 2. Run "Adaptive_Auto_Attack_main.py"\
     Then you will get the result of TRADES MINIST
+
+## Citation
+````
+@article{Ye2022Practical,
+Author = {Ye Liu and Yaya Cheng and Lianli Gao and Xianglong Liu and Qilong Zhang and Jingkuan Song},
+Title = {Practical Evaluation of Adversarial Robustness via Adaptive Auto Attack},
+Booktitle = {CVPR},
+Year = {2022},
+Eprint = {arXiv:2203.05154},
+}
+````
