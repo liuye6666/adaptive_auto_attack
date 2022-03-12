@@ -157,7 +157,7 @@ The robust accuracy is computed at `eps = 0.5` in the L2-norm.
 |**9**| [(Rony et al., 2019)](https://arxiv.org/abs/1811.09600)| WRN-28-10| 89.05| 66.44| | | | | |
 |**10**| [(Ding et al., 2020)](https://openreview.net/forum?id=HkeryxBtPB)| WRN-28-4| 88.02| 66.09| | | | | |
 
-## ImageNet-Linf
+## ImageNet - Linf
 
 The robust accuracy is computed at `eps = 4/255` in the Linf-norm.
 
@@ -174,7 +174,7 @@ The robust accuracy is computed at `eps = 4/255` in the Linf-norm.
 | **5** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | RN-18        | 52.90 | 25.30     | 10.10  | 2.58   | **25.14(0.16)** | **1.96(5.15x)** | **0.96(2.69x)**  |
 | **6** | Undefended                                                    | RN-50        | 76.74 | 0.0       | 0.40   | 0.39   | **0.0**         | **0.02(20.0x)** | **0.005(78.0x)** |
 
-## ImageNet-L2
+## ImageNet - L2
 
 The robust accuracy is computed at `eps = 3.0` in the L2-norm.
 
