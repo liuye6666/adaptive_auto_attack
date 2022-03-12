@@ -11,7 +11,7 @@ CVPR 2022
 A practical evaluation method should be convenient (i.e., parameter-free), efficient (i.e., fewer iterations) and reliable (i.e., approaching the lower bound of robustness). Towards this target, we propose a parameter-free **Adaptive Auto Attack (A<sup>3</sup>)** evaluation method. We apply **A<sup>3</sup>** to over 50 widely-used defense models. By consuming much fewer iterations than existing methods, i.e, 1/10 on average (10x speed up), we achieve lower robust accuracy in all cases but one. Notably, we won **first place** out of 1681 teams in [CVPR 2021 White-box Adversarial Attacks on Defense Models competitions](https://tianchi.aliyun.com/competition/entrance/531847/introduction?lang=en-us) with this method. [竞赛中文版入口](https://tianchi.aliyun.com/competition/entrance/531847/introduction?lang=zh-cn)
 
 ## News
-+ [March 2022] We extend the A3 to additional datasets (i.e., MNIST, CIFAR-10, CIFAR-100, ImageNet) and metrics (i.e., Linf and L2).
++ [March 2022] We extend the A<sup>3</sup> to additional datasets (i.e., MNIST, CIFAR-10, CIFAR-100, ImageNet) and metrics (i.e., Linf and L2).
 + [March 2022] The paper is accepted at CVPR 2022!
 
 # Practical Adversarial Defenses Evaluation
