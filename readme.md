@@ -8,7 +8,7 @@ CVPR 2022
 [https://arxiv.org/abs/2203.05154](https://arxiv.org/abs/2203.05154)
 
 
-A practical evaluation method should be convenient (i.e., parameter-free), efficient (i.e., fewer iterations) and reliable (i.e., approaching the lower bound of robustness). Towards this target, we propose a parameter-free **Adaptive Auto Attack (A3)** evaluation method. We apply **A3** to over 50 widely-used defense models. By consuming much fewer iterations than existing methods, i.e, 1/10 on average (10x speed up), we achieve lower robust accuracy in all cases but one. Notably, we won **first place** out of 1681 teams in [CVPR 2021 White-box Adversarial Attacks on Defense Models competitions](https://tianchi.aliyun.com/competition/entrance/531847/introduction?lang=en-us) with this method. [竞赛中文版入口](https://tianchi.aliyun.com/competition/entrance/531847/introduction?lang=zh-cn)
+A practical evaluation method should be convenient (i.e., parameter-free), efficient (i.e., fewer iterations) and reliable (i.e., approaching the lower bound of robustness). Towards this target, we propose a parameter-free **Adaptive Auto Attack (A<sup>3</sup>)** evaluation method. We apply **A<sup>3</sup>** to over 50 widely-used defense models. By consuming much fewer iterations than existing methods, i.e, 1/10 on average (10x speed up), we achieve lower robust accuracy in all cases but one. Notably, we won **first place** out of 1681 teams in [CVPR 2021 White-box Adversarial Attacks on Defense Models competitions](https://tianchi.aliyun.com/competition/entrance/531847/introduction?lang=en-us) with this method. [竞赛中文版入口](https://tianchi.aliyun.com/competition/entrance/531847/introduction?lang=zh-cn)
 
 ## News
 + [March 2022] We extend the A3 to additional datasets (i.e., MNIST, CIFAR-10, CIFAR-100, ImageNet) and metrics (i.e., Linf and L2).
@@ -21,7 +21,7 @@ A practical evaluation method should include several advantages:
 * **Efficient (i.e., fewer iterations)** 
 * **Reliable (i.e., approaching the lower bound of robustness)**
 
-Towards this target, we propose a parameter-free **Adaptive Auto Attack (A3)** evaluation method. 
+Towards this target, we propose a parameter-free **Adaptive Auto Attack (A<sup>3</sup>)** evaluation method. 
 
 **Note**: To have a new defense method added: please check [here](https://github.com/liuye6666/adaptive_auto_attack/issues/new?assignees=&labels=enhancement&template=add-defense-method.md&title=Add+defense+method)
 
@@ -33,9 +33,9 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 
 **Note**: ‡ indicates models which exploit additional data for training (e.g. unlabeled data, pre-training).
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10^6), while the “**<-**” column shows the iteration number of backward propagation(**million**,10^6). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10^6), while the “**<-**” column shows the iteration number of backward propagation(**million**,10^6). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
-|#|paper|model |clean<br>(acc)|AA<br>(acc)|AA<br>(->)|AA<br>(<-)|A3<br>(acc)|A3<br>(->)|A3<br>(<-)|
+|#|paper|model |clean<br>(acc)|AA<br>(acc)|AA<br>(->)|AA<br>(<-)|A<sup>3</sup><br>(acc)|A<sup>3</sup><br>(->)|A<sup>3</sup><br>(<-)|
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN -70-16| 91.10| 65.88| 51.2 | 12.9 | **65.78(0.10)** | **4.52(11.32x)**|**2.2(5.86x)** |
 |**2**| [(Rebuffi et al., 2021)](https://arxiv.org/abs/2103.01946) | WRN-70-16 | 88.54 | 64.25 | 50.8 | 12.6 | **64.20(0.05)** | **4.41(11.52x)** | **2.17(5.81x)** |
@@ -97,9 +97,9 @@ The robust accuracy is computed at `eps = 8/255` in the Linf-norm, except for th
 
 **Note**: ‡ indicates models which exploit additional data for training (e.g. unlabeled data, pre-training).
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The  “acc”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The  “acc”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
-|   #    | paper                                                        |   model   | clean<br>(acc) | AA<br>(acc) | AA<br>(->) | AA<br>(<-) |         A3(acc) |A3(->)  |A3(<-)  |
+|   #    | paper                                                        |   model   | clean<br>(acc) | AA<br>(acc) | AA<br>(->) | AA<br>(<-) |         A<sup>3</sup><br>(acc) |A<sup>3</sup><br>(->)  |A<sup>3</sup><br>(<-)  |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-70-16| 69.15| 36.88| 29.8 | 7.4 | **36.86(0.02)** | **2.56(11.64x)** | **1.25(5.92x)** |
 |**2**| [(Rebuffi et al., 2021)](https://arxiv.org/abs/2103.01946) | WRN-70-16 | 63.56 | 34.64 | 28.0 | 7.0 |**34.55(0.09)** |**2.38(11.76x)** |**1.16(6.0x)** |
@@ -120,9 +120,9 @@ The robust accuracy is computed at `eps = 0.3` in the Linf-norm.
 
 **Note**: We will gradually refine the evaluation of the defense models.
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
-|   #    | paper  | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A3<br>(acc)  |A3<br>(->)  |A3<br>(<-)  |
+|   #    | paper  | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A<sup>3</sup><br>(acc)  |A<sup>3</sup><br>(->)  |A<sup>3</sup><br>(<-)  |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)| 99.26| 96.34|  76.05 | 18.44  | **96.31(0.03)** | **6.53(11.64x)** | **3.22(5.72x)** |
 |**2**| [(Zhang et al., 2020a)](https://arxiv.org/abs/1906.06316)| 98.38| 93.96| | | | | |
@@ -142,9 +142,9 @@ The robust accuracy is computed at `eps = 0.5` in the L2-norm.
 
 **Note**: ‡ indicates models which exploit additional data for training (e.g. unlabeled data, pre-training).
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
-|   #    | paper                                                        |   model   | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A3<br>(acc)  |A3<br>(->)  |A3<br>(<-)  |
+|   #    | paper                                                        |   model   | clean<br>(acc) | AA<br>(acc) |AA<br>(->)  |AA<br>(<-)  |A<sup>3</sup><br>(acc)  |A<sup>3</sup><br>(->)  |A<sup>3</sup><br>(<-)  |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |**1**| [(Gowal et al., 2020)](https://arxiv.org/abs/2010.03593)‡| WRN-70-16| 94.74| 80.53| | | | | |
 |**2**| [(Rebuffi et al., 2021)](https://arxiv.org/abs/2103.01946) | WRN-28-10 | 91.79 | 78.80 | 62.00 | 15.20 | **78.79(0.01)** | **5.35(11.59x)** | **2.63(5.78x)** |
@@ -163,9 +163,9 @@ The robust accuracy is computed at `eps = 4/255` in the Linf-norm.
 
 **Note**: We will gradually refine the evaluation of the defense models.
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
-| #     | paper  | model | clean<br>(acc) | AA<br>(acc)   | AA<br>(->) | AA<br>(<-) | A3<br>(acc)         | A3<br>(->)         | A3<br>(<-)          |
+| #     | paper  | model | clean<br>(acc) | AA<br>(acc)   | AA<br>(->) | AA<br>(<-) | A<sup>3</sup><br>(acc)         | A<sup>3</sup><br>(->)         | A<sup>3</sup><br>(<-)          |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **1** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | WRN-50-2     | 68.46 | 38.14     | 15.15  | 3.82   | **38.12(0.02)** | **2.67(5.67x)** | **1.31(2.90x)**  |
 | **2** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489)     | RN-50        | 64.10 | 34.66     | 13.78  | 3.49   | **34.60(0.06)** | **2.47(5.58x)** | **1.22(2.86x)**  |
@@ -180,9 +180,9 @@ The robust accuracy is computed at `eps = 3.0` in the L2-norm.
 
 **Note**: We will gradually refine the evaluation of the defense models.
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A3** shows the difference between the robust accuracies of **AA** and **A3**, the “**<-**” and “**->**” columns of **A3** show the speedup factors of **A3** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**), while the “**<-**” column shows the iteration number of backward propagation(**million**). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
-| #     | paper                                                    | model | clean<br>(acc) | AA<br>(acc) | AA<br>(->) | AA<br>(<-) | A3<br>(acc)         | A3<br>(->)         | A3<br>(<-)         |
+| #     | paper                                                    | model | clean<br>(acc) | AA<br>(acc) | AA<br>(->) | AA<br>(<-) | A<sup>3</sup><br>(acc)         | A<sup>3</sup><br>(->)         | A<sup>3</sup><br>(<-)         |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **1** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489) | DenseNet-161 | 66.14 | 36.52   | 14.51  | 3.67   | **36.50(0.02)** | **2.59(5.60x)** | **1.28(2.87x)** |
 | **2** | [(Salman et al., 2020)](https://arxiv.org/abs/2007.08489) | VGG16_BN     | 56.24 | 29.62   | 11.79  | 2.99   | **29.62(0.0)**  | **2.20(5.36x)** | **1.08(2.77x)** |
@@ -215,10 +215,10 @@ Extraction Code: `arej`
 ### Citation
 ````
 @article{Ye2022Practical,
-Author = {Ye Liu and Yaya Cheng and Lianli Gao and Xianglong Liu and Qilong Zhang and Jingkuan Song},
-Title = {Practical Evaluation of Adversarial Robustness via Adaptive Auto Attack},
-Booktitle = {CVPR},
-Year = {2022},
-Eprint = {arXiv:2203.05154},
+author = {Ye Liu and Yaya Cheng and Lianli Gao and Xianglong Liu and Qilong Zhang and Jingkuan Song},
+title = {Practical Evaluation of Adversarial Robustness via Adaptive Auto Attack},
+booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+year = {2022},
+eprint = {arXiv:2203.05154},
 }
 ````
