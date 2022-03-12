@@ -1,4 +1,3 @@
-import os
 import math
 import torch
 import torch.nn as nn
@@ -22,7 +21,7 @@ class Feature_Scatter(torch.nn.Module):
         from collections import OrderedDict
         new_state_dict = OrderedDict()
 
-        checkpoint = torch.load(MODEL_PATH,map_location="cuda")
+        checkpoint = torch.load(MODEL_PATH)
         # load basic network without module
         for k, v in checkpoint['net'].items():
             name = k[17:]

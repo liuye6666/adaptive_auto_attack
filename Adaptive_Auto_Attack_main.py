@@ -563,31 +563,31 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model.load("model_weights/Feature_Scatter/Feature-Scatter")
 
     if model_name=="adv_inter":
-        from backbone.CIFAR10.ADV_INTER.wideresnet import WideResNet
+        from models.CIFAR10.ADV_INTER.wideresnet import WideResNet
         model = WideResNet(depth=28, num_classes=10, widen_factor=10).to("cuda")
         model = nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/ADV_INTER/latest")["net"])
         model = nn.Sequential(Normalize([0.5, 0.5, 0.5], [0.50, 0.50, 0.50]), model)
 
     if model_name=="adv_regular":
-        from backbone.CIFAR10.ADV_REGULAR.resnet import ResNet18
+        from models.CIFAR10.ADV_REGULAR.resnet import ResNet18
         model = ResNet18().to("cuda")
         model.load_state_dict(torch.load("model_weights/ADV_REGULAR/pretrained88.pth"))
 
     if model_name=="awp_28_10":
-        from backbone.CIFAR10.AWP.wideresnet import WideResNet
+        from models.CIFAR10.AWP.wideresnet import WideResNet
         model = WideResNet(depth=28, num_classes=10, widen_factor=10)
         ckpt = filter_state_dict(torch.load("model_weights/AWP/RST-AWP_cifar10_linf_wrn28-10.pt"))
         model.load_state_dict(ckpt)
 
     if model_name=="awp_34_10":
-        from backbone.CIFAR10.AWP.wideresnet import WideResNet
+        from models.CIFAR10.AWP.wideresnet import WideResNet
         model = WideResNet(depth=34, num_classes=10, widen_factor=10)
         ckpt = filter_state_dict(torch.load("model_weights/AWP/TRADES-AWP_cifar10_linf_wrn34-10.pt"))
         model.load_state_dict(ckpt)
 
     if model_name=="fbtf":
-        from backbone.CIFAR10.FBTF.preact_resnet import PreActResNet18
+        from models.CIFAR10.FBTF.preact_resnet import PreActResNet18
         model = PreActResNet18().to("cuda")
         # model = nn.DataParallel(model)
         # model.load_state_dict(torch.load("model_weights/FBTF/cifar_model_weights_30_epochs.pth"),strict=False)
@@ -595,49 +595,49 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model = nn.Sequential(Normalize([0.4914, 0.4822, 0.4465], [0.2471, 0.2435, 0.2616]), model)
 
     if model_name=="geometry":
-        from backbone.CIFAR10.GEOMETRY.wideresnet import WideResNet
+        from models.CIFAR10.GEOMETRY.wideresnet import WideResNet
         ep=0.031
         model = WideResNet(depth=28, num_classes=10, widen_factor=10)
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/GEOMETRY/Zhang2020Geometry.pt")["state_dict"])
 
     if model_name=="hydra":
-        from backbone.CIFAR10.HYDRA.wrn_cifar import wrn_28_10
+        from models.CIFAR10.HYDRA.wrn_cifar import wrn_28_10
         model = wrn_28_10(nn.Conv2d, nn.Linear)
         model = nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/HYDRA/model_best_dense.pth.tar", map_location="cuda")["state_dict"])
 
     if model_name=="hyer_embe":
-        from backbone.CIFAR10.HYPER_EMBE.at_he import WideResNet
+        from models.CIFAR10.HYPER_EMBE.at_he import WideResNet
         model = WideResNet(widen_factor=20, use_FNandWN=True)
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/HYPER_EMBE/model-wideres-pgdHE-wide20.pt")['state_dict'])
 
     if model_name=="level_sets":
         ep=0.031
-        from backbone.CIFAR10.LEVEL_SETS.resnet import ResNet18
+        from models.CIFAR10.LEVEL_SETS.resnet import ResNet18
         model = ResNet18().to("cuda")
         ckpt = level_sets_filter_state_dict(torch.load("model_weights/LEVEL_SETS/200.pth"))
         model.load_state_dict(ckpt)
 
     if model_name=="mma":
-        # from backbone.CIFAR10.MMA.MMA import WideResNet
+        # from models.CIFAR10.MMA.MMA import WideResNet
         # model = WideResNet(depth=28, widen_factor=4, sub_block1=False).to("cuda")
-        from backbone.CIFAR10.MMA.MMA import Ding2020MMANet
+        from models.CIFAR10.MMA.MMA import Ding2020MMANet
         model = Ding2020MMANet().to("cuda")
         ckpt = torch.load("model_weights/MMA/Ding2020MMA.pt")
         model.load_state_dict(ckpt)
         # model = nn.Sequential(Normalize([0.4914, 0.4822, 0.4465], [0.2471, 0.2435, 0.2616]), model)
 
     if model_name=="overfit":
-        from backbone.CIFAR10.OVERFIT.robust_overfitting import WideResNet
+        from models.CIFAR10.OVERFIT.robust_overfitting import WideResNet
         model = WideResNet(depth=34, num_classes=10, widen_factor=20)
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/OVERFIT/cifar10_wide20_linf_eps8.pth"))
         model = nn.Sequential(Normalize([0.4914, 0.4822, 0.4465], [0.2471, 0.2435, 0.2616]), model)
 
     if model_name=="pre_train":
-        from backbone.CIFAR10.PRE_TRAIN.pre_training import WideResNet
+        from models.CIFAR10.PRE_TRAIN.pre_training import WideResNet
         model = WideResNet(depth=28, num_classes=10, widen_factor=10).to("cuda")
         model = nn.DataParallel(model)
         model.module.fc = nn.Linear(640, 10)
@@ -645,7 +645,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model = nn.Sequential(Normalize([0.5, 0.5, 0.5], [0.50, 0.50, 0.50]), model)
 
     if model_name=="proxy_dist":
-        from backbone.CIFAR10.OVERFIT.robust_overfitting import WideResNet
+        from models.CIFAR10.OVERFIT.robust_overfitting import WideResNet
         model = WideResNet(depth=34, num_classes=10, widen_factor=10)
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/PROXY_DIST/Sehwag2021Proxy.pt")["state_dict"])
@@ -658,36 +658,36 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
                                           resume_path='model_weights/ROBUSTNESS/cifar_linf_8.pt')
 
     if model_name=="rst":
-        from backbone.CIFAR10.RST.rst import WideResNet
+        from models.CIFAR10.RST.rst import WideResNet
         model = WideResNet(depth=28, num_classes=10, widen_factor=10)
         model = nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/RST/rst_adv.pt.ckpt")["state_dict"])
 
     if model_name=="self_adaptive":
         ep=0.031
-        from backbone.CIFAR10.SELF_ADAPTIVE.wideresnet import wrn34
+        from models.CIFAR10.SELF_ADAPTIVE.wideresnet import wrn34
         model = wrn34(num_classes=10).to("cuda")
         model = nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/self-adaptive/model-wideres-epoch78.pth"))
     if model_name=="sensible":
-        from backbone.CIFAR10.SENSIBLE.wideresnet import WideResNet
+        from models.CIFAR10.SENSIBLE.wideresnet import WideResNet
         model = WideResNet().to("cuda")
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/SENSIBLE/SENSE_checkpoint300.dict")["state_dict"])
 
     if model_name=="understanding_fast":
-        from backbone.CIFAR10.Understanding_FAST.preactresnet import PreActResNet18
+        from models.CIFAR10.Understanding_FAST.preactresnet import PreActResNet18
         model = PreActResNet18(10).to("cuda")
         model.load_state_dict(
             torch.load("model_weights/Understanding_FAST/Andriushchenko2020Understanding.pt")["last"])
 
     if model_name=="yopo":
-        from backbone.CIFAR10.YOPO.wideresnet import WideResNet
+        from models.CIFAR10.YOPO.wideresnet import WideResNet
         model = WideResNet(depth=34)
         model.load_state_dict(torch.load("model_weights/YOPO/Zhang2019You.pt", map_location="cuda"))
 
     if model_name=="ULAT_28_10_with":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=28, width=10,
@@ -696,7 +696,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model.load_state_dict(torch.load("model_weights/FIX_DATA/cifar10_linf_wrn28-10_with.pt"))
 
     if model_name=="ULAT_70_16_extra":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=70, width=16,
@@ -706,7 +706,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         batch_size=32
 
     if model_name=="ULAT_34_20":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=34, width=20,
@@ -716,7 +716,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         batch_size=64
 
     if model_name=="ULAT_70_16":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=70, width=16,
@@ -726,7 +726,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         batch_size=32
 
     if model_name=="fix_data_28_10_with":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=28, width=10,
@@ -735,7 +735,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model.load_state_dict(torch.load("model_weights/FIX_DATA_V2/cifar10_linf_wrn28-10_cutmix_ddpm_v2.pt"))
 
     if model_name=="fix_data_70_16_extra":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=70, width=16,
@@ -768,14 +768,14 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model.load_state_dict(torch.load("model_weights/FAT/fat_for_trades_wrn34-10_eps0.062_beta6.0.pth.tar")["state_dict"])
 
     if model_name=="proxy_dist_r18":
-        from backbone.CIFAR10.PROXY_DIST.resnet import ResNet18
+        from models.CIFAR10.PROXY_DIST.resnet import ResNet18
         model = ResNet18().to("cuda")
         # model = torch.nn.DataParallel(model)
         ckpt = (torch.load("model_weights/PROXY_DIST/Sehwag2021Proxy_R18.pt"))
         model.load_state_dict(ckpt)
     if model_name=="TRPF":
-        from backbone.CIFAR10.TRPF.resnet import ResNet18
-        from backbone.CIFAR10.TRPF.normalization_layer import Normalize_layer
+        from models.CIFAR10.TRPF.resnet import ResNet18
+        from models.CIFAR10.TRPF.normalization_layer import Normalize_layer
         mean = [x / 255 for x in [125.3, 123.0, 113.9]]
         std = [x / 255 for x in [63.0, 62.1, 66.7]]
         model = ResNet18(num_classes=10).to("cuda")
@@ -787,32 +787,32 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         model.load_state_dict(ckpt)
 
     if model_name=="OAAT_r18":
-        from backbone.CIFAR10.OAAT.resnet import ResNet18
+        from models.CIFAR10.OAAT.resnet import ResNet18
         model = ResNet18(num_classes=10).to("cuda")
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/TAARB/OAAT_CIFAR10_RN18.pt"))
 
     if model_name=="OAAT_wrn34":
-        from backbone.CIFAR10.OAAT.widresnet import WideResNet # TRADES_WRN
+        from models.CIFAR10.OAAT.widresnet import WideResNet # TRADES_WRN
         model = WideResNet(num_classes=10).to("cuda")
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/TAARB/OAAT_CIFAR10_WRN34.pt"))
 
     if model_name=="RLPE_28_10":
-        from backbone.CIFAR10.RST.rst import WideResNet
+        from models.CIFAR10.RST.rst import WideResNet
         model = WideResNet(depth=28, num_classes=10, widen_factor=10)
         model = nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/RLPE/RST_0.1485.pt")["state_dict"])
 
     if model_name=="RLPE_34_15":
-        from backbone.CIFAR10.RST.rst import WideResNet
+        from models.CIFAR10.RST.rst import WideResNet
         model = WideResNet(depth=34, num_classes=10, widen_factor=15)
         model = nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/RLPE/Wide-RST_0.1485.pt")["state_dict"])
 
     if model_name=="ULAT_70_16_with_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=100, depth=70, width=16,
@@ -823,7 +823,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="ULAT_70_16_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=100, depth=70, width=16,
@@ -834,7 +834,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="fix_data_28_10_with_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=100, depth=28, width=10,
@@ -844,7 +844,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="fix_data_70_16_extra_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=100, depth=70, width=16,
@@ -855,14 +855,14 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="OAAT_r18_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.OAAT.preactresnet import PreActResNet18
+        from models.CIFAR10.OAAT.preactresnet import PreActResNet18
         model = PreActResNet18(num_classes=100).to("cuda")
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/TAARB/OAAT_CIFAR100_PRN18.pkl"))
 
     if model_name=="OAAT_wrn34_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.OAAT.widresnet import WideResNet # TRADES_WRN
+        from models.CIFAR10.OAAT.widresnet import WideResNet # TRADES_WRN
         model = WideResNet(num_classes=100).to("cuda")
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/TAARB/OAAT_CIFAR100_WRN34.pkl"))
@@ -884,7 +884,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="awp_34_10_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.AWP.wideresnet import WideResNet
+        from models.CIFAR10.AWP.wideresnet import WideResNet
         model = WideResNet(depth=34, num_classes=100, widen_factor=10)
         ckpt = filter_state_dict(torch.load("model_weights/AWP/AT-AWP_cifar100_linf_wrn34-10.pth"))
         model.load_state_dict(ckpt)
@@ -893,7 +893,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="pre_train_28_10_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.PRE_TRAIN.pre_training import WideResNet
+        from models.CIFAR10.PRE_TRAIN.pre_training import WideResNet
         model = WideResNet(depth=28, num_classes=100, widen_factor=10).to("cuda")
         model = nn.DataParallel(model)
         model.module.fc = nn.Linear(640, 100)
@@ -908,7 +908,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="overfit_100":
         data_set = "cifar100"
-        from backbone.CIFAR10.OVERFIT.preactresnet import PreActResNet18
+        from models.CIFAR10.OVERFIT.preactresnet import PreActResNet18
         model = PreActResNet18(num_classes=100)
         # model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/OVERFIT/cifar100_linf_eps8.pth"))
@@ -961,7 +961,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         batch_size=32
 
     if model_name=="proxy_dist_L2":
-        from backbone.CIFAR10.OVERFIT.robust_overfitting import WideResNet
+        from models.CIFAR10.OVERFIT.robust_overfitting import WideResNet
         model = WideResNet(depth=34, num_classes=10, widen_factor=10)
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/PROXY_DIST/Sehwag2021ProxyL2.pt")["state_dict"])
@@ -971,7 +971,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="overfit_R18_L2":
         data_set = "cifar10"
-        from backbone.CIFAR10.OVERFIT.preactresnet import PreActResNet18
+        from models.CIFAR10.OVERFIT.preactresnet import PreActResNet18
         model = PreActResNet18(num_classes=10)
         model = torch.nn.DataParallel(model)
         model.load_state_dict(torch.load("model_weights/OVERFIT/Rice2020OverfittingL2.pt"))
@@ -981,7 +981,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         ep=0.5
 
     if model_name=="fix_data_28_10_L2":
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=28, width=10,
@@ -1056,7 +1056,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="TRADES_mnist":
         data_set='mnist'
-        from backbone.mnist.small_cnn import SmallCNN
+        from models.mnist.small_cnn import SmallCNN
         model= SmallCNN()
         model.load_state_dict(torch.load("model_weights/TRADES/model_mnist_smallcnn.pt"))
         ep=0.3
@@ -1064,7 +1064,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
 
     if model_name=="ULAT_mnist":
         data_set='mnist'
-        from backbone.CIFAR10.FIX_DATA import widresnet
+        from models.CIFAR10.FIX_DATA import widresnet
         model_ctor = widresnet.WideResNet
         model = model_ctor(
             num_classes=10, depth=28, width=10,
