@@ -17,9 +17,9 @@ A practical evaluation method should be convenient (i.e., parameter-free), effic
 # Practical Adversarial Defenses Evaluation
 A practical evaluation method should include several advantages:
 
-* **Convenient (i.e., parameter-free)**
+* **Convenient (i.e., parameter-free)** 
 * **Efficient (i.e., fewer iterations)** 
-* **Reliable (i.e., approaching the lower bound of robustness)**
+* **Reliable (i.e., approaching the lower bound of robustness)** 
 
 Towards this target, we propose a parameter-free **Adaptive Auto Attack (A<sup>3</sup>)** evaluation method. 
 
@@ -33,7 +33,7 @@ The robust accuracy is evaluated at `eps = 8/255`, except for those marked with 
 
 **Note**: ‡ indicates models which exploit additional data for training (e.g. unlabeled data, pre-training).
 
-**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10^6), while the “**<-**” column shows the iteration number of backward propagation(**million**,10^6). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
+**Note**: The  “**acc**”  column  shows  the  robust  accuracies  of  different  models. The “**->**” column shows the iteration number of forward propagation (**million**,10<sup>6</sup>), while the “**<-**” column shows the iteration number of backward propagation(**million**,10<sup>6</sup>). Notably, the “**acc**” column of **A<sup>3</sup>** shows the difference between the robust accuracies of **AA** and **A<sup>3</sup>**, the “**<-**” and “**->**” columns of **A<sup>3</sup>** show the speedup factors of **A<sup>3</sup>** relative to **AA**.
 
 |#|paper|model |clean<br>(acc)|AA<br>(acc)|AA<br>(->)|AA<br>(<-)|A<sup>3</sup><br>(acc)|A<sup>3</sup><br>(->)|A<sup>3</sup><br>(<-)|
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
