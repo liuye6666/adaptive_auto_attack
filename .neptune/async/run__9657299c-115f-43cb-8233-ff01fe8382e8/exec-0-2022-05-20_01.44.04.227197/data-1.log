@@ -1,0 +1,33 @@
+{"obj": {"type": "AssignString", "path": ["sys", "name"], "value": "Untitled"}, "version": 1}
+{"obj": {"type": "AssignString", "path": ["sys", "description"], "value": ""}, "version": 2}
+{"obj": {"type": "AssignString", "path": ["sys", "hostname"], "value": "mmeapollo2"}, "version": 3}
+{"obj": {"type": "AssignBool", "path": ["sys", "failed"], "value": false}, "version": 4}
+{"obj": {"type": "ClearStringLog", "path": ["monitoring", "stdout"]}, "version": 5}
+{"obj": {"type": "ClearStringLog", "path": ["monitoring", "stderr"]}, "version": 6}
+{"obj": {"type": "AssignString", "path": ["source_code", "entrypoint"], "value": "Adaptive_Auto_Attack_main.py"}, "version": 7}
+{"obj": {"type": "UploadFileSet", "path": ["source_code", "files"], "file_globs": ["/btherien/github/adaptive_auto_attack/Adaptive_Auto_Attack_main.py"], "reset": "False"}, "version": 8}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "cpu"], "min": 0.0, "max": 100.0, "unit": "%"}, "version": 9}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "cpu"]}, "version": 10}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "memory"], "min": 0.0, "max": 362.0, "unit": "GB"}, "version": 11}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "memory"]}, "version": 12}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "gpu"], "min": 0.0, "max": 100.0, "unit": "%"}, "version": 13}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "gpu"]}, "version": 14}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "gpu_memory"], "min": 0.0, "max": 31.74853515625, "unit": "GB"}, "version": 15}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "gpu_memory"]}, "version": 16}
+{"obj": {"type": "AssignFloat", "path": ["parameters", "learning_rate"], "value": 0.001}, "version": 17}
+{"obj": {"type": "AssignString", "path": ["parameters", "optimizer"], "value": "Adam"}, "version": 18}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 1.0, "step": null, "ts": 1653011044.9072132}]}, "version": 19}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.9, "step": null, "ts": 1653011044.9075248}]}, "version": 20}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.81, "step": null, "ts": 1653011044.9080567}]}, "version": 21}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.7290000000000001, "step": null, "ts": 1653011044.9081972}]}, "version": 22}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.6561, "step": null, "ts": 1653011044.9083247}]}, "version": 23}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.5904900000000001, "step": null, "ts": 1653011044.9084458}]}, "version": 24}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.531441, "step": null, "ts": 1653011044.9085655}]}, "version": 25}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.4782969000000001, "step": null, "ts": 1653011044.908684}]}, "version": 26}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.4304672100000001, "step": null, "ts": 1653011044.908802}]}, "version": 27}
+{"obj": {"type": "LogFloats", "path": ["train", "loss"], "values": [{"value": 0.3874204890000001, "step": null, "ts": 1653011044.9089193}]}, "version": 28}
+{"obj": {"type": "AssignFloat", "path": ["eval", "f1_score"], "value": 0.66}, "version": 29}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "stdout"], "values": [{"value": "", "step": null, "ts": 1653011044.9092486}]}, "version": 30}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1653011044.9094715}]}, "version": 31}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "memory"], "values": [{"value": 8.412227630615234, "step": null, "ts": 1653011044.895473}]}, "version": 32}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "gpu_memory"], "values": [{"value": 0.0118408203125, "step": null, "ts": 1653011044.895473}]}, "version": 33}
