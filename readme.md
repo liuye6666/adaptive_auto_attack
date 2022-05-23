@@ -1,10 +1,13 @@
-# This repository contains a modified version of Adaptive Auto Attack (Credit for the original method goes to the authors listed below)
+# This repository contains a modified version of Adaptive Auto Attack (Credit for the original method goes to the authors listed at the bottom below)
+
+
+
 
 "Practical Evaluation of Adversarial Robustness via Adaptive Auto Attack"\
 Ye Liu, Yaya Cheng, Lianli Gao, Xianglong Liu, Qilong Zhang, Jingkuan Song\
 CVPR 2022
 
-**Code and model weights have been released. We will continue to optimize the code.**\
+**Original Paper Link**\
 [https://arxiv.org/abs/2203.05154](https://arxiv.org/abs/2203.05154)
 
 
