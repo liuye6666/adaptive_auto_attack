@@ -6,3 +6,4 @@ cifar10_adv/*
 mnist_adv/*
 __pycache__/
 *.pyc
+model_weights/*
