@@ -2,10 +2,17 @@
 
 Author: Benjamin Therien
 """
-
-
 import skimage
+import os
+import torchvision
+import torch
+import random
+
+import numpy as np
+import torchvision.transforms as transforms
+
 from skimage.transform import SimilarityTransform
+import torchvision.transforms.functional as tF
 
 
 def get_corners(im):
@@ -260,7 +267,7 @@ def showPoly(inCorners,outCorners,title='',lim=20):
     ax.add_patch(polygon1)
     ax.add_patch(polygon2)
     ax.set_title(title)
-    plt.ylim(-lim,100)
+    plt.ylim(-lim,lim)
     plt.xlim(-lim,lim)
     
 def get_viz_from_scale(scale,max_r):
@@ -289,14 +296,6 @@ class SSTransformation(object):
         self.max_r = max_r
         self.max_t = max_t
         self.max_s = max_s
-        self.aug = transforms.RandomAffine(
-                 degrees=(-self.max_r,self.max_r),
-                 translate=(self.max_t/H,self.max_t/W),
-                 scale=(1,self.max_s),
-                 shear = None,
-                 interpolation=transforms.InterpolationMode.NEAREST,
-                 fill=(0,255,0)
-        )
         
     def __call__(self, img):
         """Applies an affine transformation to the image
@@ -314,11 +313,13 @@ class SSTransformation(object):
         params:
             img (PIL.Image)    : input image
         """
-        scale_choice = np.random.choice([0,1],p=[0.6,0.4])
-        if scale_choice == 0:
-            scale = np.random.uniform(1.2,self.max_s)
-        else:
-            scale = np.random.uniform(1.,self.max_s)
+        # scale_choice = np.random.choice([0,1],p=[0.6,0.4])
+        # if scale_choice == 0:
+        #     scale = np.random.uniform(1.2,self.max_s)
+        # else:
+        #     scale = np.random.uniform(1.,self.max_s)
+        
+        scale = self.max_s
         
         choice = np.random.choice([0,1],p=[0.9,0.1])
         im = np.asarray(img)
@@ -364,3 +365,111 @@ class SSTransformation(object):
                 fill=(0,255,0)
         )
         return aug
+
+
+
+
+
+def save_im_and_label(filepath,dataset):
+    """saves images and their labels from a pytorch dataset
+    to a stacked numpy format 
+    
+    args:
+        filepath (str) : the path, relative of absolute, to
+            the destianation folder SHOULD INCLUDE FILE PREFIX
+        dataset (torchvision.datasets) : the dataset to be saved
+    """
+    ims_X,ims_Y = [],[]
+    for x,y in testset:
+        ims_X.append(x.permute(1,2,0))
+        ims_Y.append(torch.tensor(y,dtype=torch.long))
+        
+    np.save('{}_X.npy'.format(filepath),torch.stack(ims_X).numpy())
+    np.save('{}_Y.npy'.format(filepath),torch.stack(ims_Y).numpy())
+
+def setAllSeeds(seed):
+    """Helper for setting seeds"""
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+
+def get_aug_dataset(dataset, use_train=False, data_root_ovr=None, sstransformation=dict(max_r=30., max_t=10.,max_s=1.2248,shape=(32,32,3),), seed=1):
+    """Function loads a dataset and its human impereceptibly augnmented twin.
+
+    args:
+        dataset (string) : the name of the dataset
+        use_train (bool) : boolean -- when True, loads train, otherwise loads test
+        data_root_ovr (string) : path to the data folder which overrides the default
+        sstransformation (dict) : arguments to create an object of the SSTransformation class
+
+    """
+    setAllSeeds(seed)
+
+    if data_root_ovr != None:
+        DATAROOT = data_root_ovr
+    else:
+        DATAROOT = os.environ['DATASET_ROOT']
+
+    transform = transforms.Compose([transforms.ToTensor()])
+    transform_aug = transforms.Compose([SSTransformation(**sstransformation),
+                                            transforms.ToTensor()])
+
+    if dataset == 'cifar10':
+        dataset_regular = torchvision.datasets.CIFAR10(root=DATAROOT, train=use_train,
+                                                       download=True, transform=transform)
+
+        dataset_aug = torchvision.datasets.CIFAR10(root=DATAROOT, train=use_train,
+                                                   download=True, transform=transform_aug)
+    elif dataset == 'imageNet':
+        raise NotImplementedError("No dataset of name: {}, please select amoung the available datasets: [cifar10].".format(dataset))
+    elif dataset == 'MNIST':
+        raise NotImplementedError("No dataset of name: {}, please select amoung the available datasets: [cifar10].".format(dataset))
+    elif dataset == 'SVHN':
+        raise NotImplementedError("No dataset of name: {}, please select amoung the available datasets: [cifar10].".format(dataset))
+    else:
+        raise NotImplementedError("No dataset of name: {}, please select amoung the available datasets: [cifar10].".format(dataset))
+
+    return dataset_regular, dataset_aug
+
+
+
+def show_reg_aug_side_by_side(dataset_regular,dataset_aug,total_plots=40,plots_per_row=5,figsize=(20,67),savepath=None):
+    """Funtion plots regular and augmented images side by side for comparison."""
+    classes = dataset_regular.classes
+    n = np.ceil(total_plots/plots_per_row).astype(np.int32) * 2
+    fig, axs = plt.subplots(n, plots_per_row, figsize=figsize)
+    for x in range(total_plots):
+        c,r = x % plots_per_row, int(x/plots_per_row) * 2
+        axs[r,c].set_title("Regular | Class: {}".format(classes[dataset_regular[x][1]]))
+        axs[r,c].imshow(dataset_regular[x][0].permute(1,2,0))
+        
+        r += 1
+        axs[r,c].set_title("Augmented | Class: {}".format(classes[dataset_aug[x][1]]))
+        axs[r,c].imshow(dataset_aug[x][0].permute(1,2,0))
+
+    if savepath:
+        fig.savefig(savepath,bbox_inches='tight',dpi=400)
+    
+    return fig
+
+
+
+def save_im_and_label(filepath,dataset):
+    """saves images and their labels from a pytorch dataset
+    to a stacked numpy format 
+    
+    args:
+        filepath (str) : the path, relative of absolute, to
+            the destination folder SHOULD INCLUDE FILE PREFIX
+        dataset (torchvision.datasets) : the dataset to be saved
+    """
+    ims_X,ims_Y = [],[]
+    for x,y in dataset:
+        ims_X.append(x.permute(1,2,0))
+        ims_Y.append(torch.tensor(y,dtype=torch.long))
+    
+    print("Saving images to {}".format('{}_X.npy'.format(filepath)))
+    np.save('{}_X.npy'.format(filepath),torch.stack(ims_X).numpy())
+    print("Saving labels to {}".format('{}_Y.npy'.format(filepath)))
+    np.save('{}_Y.npy'.format(filepath),torch.stack(ims_Y).numpy())

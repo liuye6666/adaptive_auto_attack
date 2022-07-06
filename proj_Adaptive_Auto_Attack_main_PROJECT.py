@@ -25,6 +25,8 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 from mmcv import Config
 
+from augmentation_tools import get_aug_dataset, save_im_and_label, show_reg_aug_side_by_side
+
 
 # settings
 device = torch.device("cuda:0")
@@ -421,6 +423,8 @@ def Adaptive_Auto_white_box_attack(model, device, eps, is_random, batch_size, av
     max_loss[~not_suc_index]= np.ones((~not_suc_index).sum())
     clean_acc = natural_acc/len(all_atk_labs)
     print(f"clean acc:{clean_acc:0.4}")
+    if neptune_run != None:
+        neptune_run['clean_acc'] = clean_acc
 
     out_restart_num = 13
     BIAS_ATK = False
@@ -658,6 +662,7 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
         parser.add_argument('--config', '-c', default='config/mnist.py', help='config file location')
         parser.add_argument('--save-path', '-sp', default='mnist_adv/', help='where to save the adv examples')
         parser.add_argument('--no-neptune', '-nn', action='store_true', help='do not use neptune')
+        parser.add_argument('--no-config', '-nc', action='store_true', default=False, help='do not use config')
         parser.add_argument('--dataset-path', '-dp', default='./numpy_datasets/', help='path to numpy formatted datasets')
         args = parser.parse_args()
         return args
@@ -1231,12 +1236,40 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
     else:
         cfg_key = Config.fromfile('./keys/api_key.py')
         neptune_run = neptune.init(**cfg_key.neptune_args) 
-        neptune_run['parameters'] = cfg
+        neptune_run['config'] = cfg
+        neptune_run['cli_args'] = args
 
+    if not args.no_config:
+        if cfg.difficulty == 'easy':
+            sstransformation = cfg.sstransformation_easy
+        elif cfg.difficulty == 'med':
+            sstransformation = cfg.sstransformation_med
+        elif cfg.difficulty == 'hard':
+            sstransformation = cfg.sstransformation_hard
+
+        sstransformation.update({'shape':cfg.image_shape})
+
+        dataset_regular, dataset_aug = get_aug_dataset(
+                dataset=cfg.default_dataset, 
+                use_train=False, 
+                data_root_ovr=None, 
+                sstransformation=sstransformation,
+                seed=cfg.seed
+            )
+
+        ds_prefix ='_'.join([cfg.default_dataset] + ['-'.join([str(y)for y in x]) for x in sstransformation.items()] + [f'seed-{cfg.seed}'])
+        save_im_and_label(filepath='numpy_datasets/{}'.format(ds_prefix),dataset=dataset_aug)
+
+
+        fig = show_reg_aug_side_by_side(dataset_regular,dataset_aug,total_plots=40,plots_per_row=5,figsize=(20,67))#,savepath='/tmp/image_viz.png')
+        if neptune_run:
+            neptune_run['Dataset-comparison-fig'] = fig
+
+        args.dataset_path = ds_prefix
 
     data_set = (
-        np.load("{}_X.npy".format(args.dataset_path)).astype(np.float32),
-        np.load("{}_Y.npy".format(args.dataset_path)),
+        np.load("numpy_datasets/{}_X.npy".format(args.dataset_path)).astype(np.float32),
+        np.load("numpy_datasets/{}_Y.npy".format(args.dataset_path)),
         args.dataset_path,
         cfg.default_dataset,#used for selecting AAA hyperparameters
     )
