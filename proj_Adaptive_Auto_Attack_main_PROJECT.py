@@ -1,29 +1,29 @@
 import os
 # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-import argparse
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torchvision
-from torch.autograd import Variable
-import torch.optim as optim
-from torchvision import datasets, transforms
-import numpy as np
-from tqdm import  tqdm,trange
-import pandas as pd
-import glob
-from PIL import Image
-from torch.utils.data import Dataset, DataLoader
 import datetime
 import math
 import random
 import time
+import argparse
+import glob
+import pprint
+import torch
+import torchvision
 
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+import numpy as np
+import pandas as pd
+import neptune.new as neptune
+import os.path as osp
 
-
-
-
-
+from torch.autograd import Variable
+from torchvision import datasets, transforms
+from tqdm import  tqdm,trange
+from PIL import Image
+from torch.utils.data import Dataset, DataLoader
+from mmcv import Config
 
 
 # settings
@@ -277,30 +277,106 @@ def AAA_white_box(model, X, X_adv, y, epsilon=0.031, step_num=20, ADI_step_num=8
 
     return atk_acc_num, np_atk_filed_index, X_adv, each_max_loss,odi_atk_suc_num,each_back_num,total_odi_distribution,tfn
 
+
+
+class ImageSetMem(Dataset):
+    def __init__(self, df, transformer,datasets,np_ds):
+        self.df = df
+        self.transformer = transformer
+        self.datasets=datasets
+        self.X,self.Y = np_ds
+    def __len__(self):
+        return len(self.df)
+    def __getitem__(self, item):
+        # image_path = self.df.iloc[item]['img_path']
+        im_idx = self.df.iloc[item]['img_idx']
+        label = self.df.iloc[item]['label']
+        suc = self.df.iloc[item]['not_suc']
+        need_atk = self.df.iloc[item]['need_atk']
+        sample = {
+            'img': self.transformer(self.X[im_idx,...]),
+            'lab': label,
+            'not_suc':suc,
+            'need_atk':need_atk,
+        }
+        return sample
+
+
+
+def mytest_loader_mem(batch_size,dataframe,datasets,np_ds,model_name='None'):
+    if datasets=="imagenet":
+        transformer = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224),transforms.ToTensor()])
+        if model_name=="FBTF_Imagenet":
+            transformer = transforms.Compose(
+                [transforms.CenterCrop(288), transforms.ToTensor()])
+    else:
+        transformer = transforms.Compose([transforms.ToTensor()])
+    datasets = {'test': ImageSetMem(dataframe, transformer, datasets, np_ds)}
+    dataloaders = DataLoader(datasets['test'],
+                             batch_size=batch_size,
+                             num_workers=8,
+                             shuffle=False,
+                             pin_memory=True)
+    return dataloaders
+
 def Adaptive_Auto_white_box_attack(model, device, eps, is_random, batch_size, average_num, model_name, data_set="cifar10",
-                                   Lnorm='Linf'):
-    ####  1.Loading datasets  ####
+                                   Lnorm='Linf', neptune_run=None):#ADDED argument
+    # ####  1.Loading datasets  ####
+    # if data_set=="mnist":
+    #     num_class=10
+    #     dataset_dir = 'data/mnist_test'
+    # if data_set=="cifar10":
+    #     num_class = 10
+    #     dataset_dir = 'data/cifar10/test'
+    # if data_set=="cifar100":
+    #     num_class = 100
+    #     dataset_dir = 'data/cifar100/test'
+    # if data_set=="imagenet":
+    #     num_class = 1000
+    #     dataset_dir = 'data/imagenet/test'
+
+    # if data_set=="cifar100" or data_set=="cifar10" or data_set=='mnist':
+    #     all_atk_imgs = glob.glob(os.path.join(dataset_dir, '*/*.png'))
+    # else:
+    #     all_atk_imgs = glob.glob(os.path.join(dataset_dir, '*/*.JPEG'))
+
+
+    # all_atk_labs = [int(img_path.split('/' )[-2]) for img_path in all_atk_imgs]
+    # not_suc_index = np.ones(len(all_atk_labs)).astype(np.bool)
+    # init_atk = pd.DataFrame({'img_path':all_atk_imgs,'label':all_atk_labs,'not_suc':not_suc_index,'need_atk':not_suc_index})
+    # data_loader = mytest_loader(batch_size=batch_size, dataframe=init_atk,datasets=data_set,model_name=model_name)
+
+
+    # MODIFIED CODE START
+
+
+
+    img_idx = [x for x in range(len(data_set[1]))]
+    label = data_set[1]
+    all_atk_labs = label
+    not_suc_index = np.ones(len(label)).astype(np.bool)
+    init_atk = pd.DataFrame({'img_idx':img_idx,'label':label,
+                             'not_suc':not_suc_index,'need_atk':not_suc_index})
+    np_ds = (data_set[0],data_set[1],)
+    # print(np_ds[0].shape)
+    data_loader = mytest_loader_mem(np_ds=np_ds,batch_size=batch_size,
+                                    dataframe=init_atk,datasets=data_set[2],
+                                    model_name=model_name) 
+    data_set = data_set[3] #indicates which default parameters for AAA to use
+
     if data_set=="mnist":
         num_class=10
-        dataset_dir = 'data/mnist_test'
     if data_set=="cifar10":
         num_class = 10
-        dataset_dir = 'data/cifar10/test'
     if data_set=="cifar100":
         num_class = 100
-        dataset_dir = 'data/cifar100/test'
     if data_set=="imagenet":
         num_class = 1000
-        dataset_dir = 'data/imagenet/test'
-    if data_set=="cifar100" or data_set=="cifar10" or data_set=='mnist':
-        all_atk_imgs = glob.glob(os.path.join(dataset_dir, '*/*.png'))
-    else:
-        all_atk_imgs = glob.glob(os.path.join(dataset_dir, '*/*.JPEG'))
-    all_atk_labs = [int(img_path.split('/' )[-2]) for img_path in all_atk_imgs]
-    not_suc_index = np.ones(len(all_atk_labs)).astype(np.bool)
-    init_atk = pd.DataFrame({'img_path':all_atk_imgs,'label':all_atk_labs,'not_suc':not_suc_index,'need_atk':not_suc_index})
-    data_loader = mytest_loader(batch_size=batch_size, dataframe=init_atk,datasets=data_set,model_name=model_name)
+
+    # MODIFIED CODE END
     total_odi_distribution = np.zeros((num_class,num_class+1))
+
+
     # 2.Initializing hyperparameters
     acc_curve = []
     robust_acc_oneshot = 0
@@ -443,6 +519,14 @@ def Adaptive_Auto_white_box_attack(model, device, eps, is_random, batch_size, av
             restart_num+=1
         if int(not_suc_index.sum())<len(not_suc_index)*0.1:
             alpha =1.0;restart_num +=10
+
+        if neptune_run != None:
+            neptune_run["alpha"].log(alpha)
+            neptune_run["max_iter"].log(max_iter)
+            neptune_run["adi_iter_num"].log(adi_iter_num)
+            neptune_run["restart_num"].log(restart_num)
+
+
         for r in range(restart_num):
             No_epoch+=1
             robust_acc_oneshot = 0
@@ -462,7 +546,14 @@ def Adaptive_Auto_white_box_attack(model, device, eps, is_random, batch_size, av
             now_need_atk_num = not_suc_need_atk_index.sum()
             now_need_atk_index = np.ones(now_need_atk_num)
             now_max_loss = max_loss[not_suc_need_atk_index]
-            data_loader = mytest_loader(batch_size=batch_size, dataframe=fast_init_atk,datasets=data_set,model_name=model_name)
+
+            # START MODIFIED CODE
+            # data_loader = mytest_loader(batch_size=batch_size, dataframe=fast_init_atk,datasets=data_set,model_name=model_name)
+            data_loader = mytest_loader_mem(np_ds=np_ds,batch_size=batch_size,
+                                    dataframe=fast_init_atk,datasets=data_set[2],
+                                    model_name=model_name) 
+            # END MODIFIED CODE
+
             if (out_re<10 and BIAS_ATK==False) or(out_re<11 and BIAS_ATK==True):
                 final_odi_atk = False
             else:
@@ -470,6 +561,9 @@ def Adaptive_Auto_white_box_attack(model, device, eps, is_random, batch_size, av
             No_class = No_epoch
             iter_num = int(remaining_iterations/(restart_num*(out_restart_num-out_re))* now_need_atk_num)
             iter_num = min(max(iter_num,15),(max_iter+adi_iter_num))
+
+            if neptune_run != None: #MODIFIED
+                neptune_run["iter_num_in_restart"].log(iter_num) #MODIFIED
 
             for i, test_data in (enumerate(data_loader)):
                 bstart = i * batch_size
@@ -507,6 +601,13 @@ def Adaptive_Auto_white_box_attack(model, device, eps, is_random, batch_size, av
                   f'used_fp_num: {total_fn} now_atk_num: {now_need_atk_num} now_correct_num: {robust_acc_oneshot} ')
             acc_curve.append(f"{not_suc_index.sum()/len(all_atk_labs):0.4}")
             print(acc_curve)
+
+        # START MODIFIED CODE
+        robust_acc = not_suc_index.sum()/len(all_atk_labs)
+        if neptune_run != None:
+            neptune_run["robust_acc"].log(robust_acc)
+            neptune_run["now_need_atk_num"].log(now_need_atk_num)
+        # END MODIFIED CODE
 
 class Normalize(nn.Module):
     def __init__(self, mean, std):
@@ -550,6 +651,21 @@ def level_sets_filter_state_dict(state_dict):
     return new_state_dict
 
 def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=100):
+    # MODIFIED STARTS   
+    def pa():
+        parser = argparse.ArgumentParser(description='PyTorch MNIST A3 Attack Evaluation')
+        parser.add_argument('--gpuid', '-g', type=int, default=0, help='gpu to run on')
+        parser.add_argument('--config', '-c', default='config/mnist.py', help='config file location')
+        parser.add_argument('--save-path', '-sp', default='mnist_adv/', help='where to save the adv examples')
+        parser.add_argument('--no-neptune', '-nn', action='store_true', help='do not use neptune')
+        parser.add_argument('--dataset-path', '-dp', default='./numpy_datasets/', help='path to numpy formatted datasets')
+        args = parser.parse_args()
+        return args
+
+    args = pa()
+    device = torch.device("cuda:{}".format(args.gpuid))
+    print(device)
+    # MODIFIED ENDS 
 
     stime = datetime.datetime.now()
     print(f"{flag} {model_name}")
@@ -1103,12 +1219,51 @@ def main(flag,model_name, ep=8./255,random=True, batch_size=128, average_number=
                                           resume_path='model_weights/ROBUSTNESS/imagenet_linf_4.pt')
         batch_size=64
 
+    # MODIFIED STARTS
+    cfg = Config.fromfile(args.config)
+    # print(cfg)
+
+    pprint.pprint(cfg)
+    
+
+    if args.no_neptune:
+        neptune_run = None
+    else:
+        cfg_key = Config.fromfile('./keys/api_key.py')
+        neptune_run = neptune.init(**cfg_key.neptune_args) 
+        neptune_run['parameters'] = cfg
+
+
+    data_set = (
+        np.load("{}_X.npy".format(args.dataset_path)).astype(np.float32),
+        np.load("{}_Y.npy".format(args.dataset_path)),
+        args.dataset_path,
+        cfg.default_dataset,#used for selecting AAA hyperparameters
+    )
+
+    # exit(0)
+    # ADDED TO ORIGINAL FILE ENDS
+    
+
 
     model.to("cuda")
     model.eval()
-    Adaptive_Auto_white_box_attack(model, device, ep, random, batch_size, average_number, model_name, data_set=data_set,Lnorm=Lnorm)
+    Adaptive_Auto_white_box_attack(model, device, ep, random, 
+                                   batch_size, average_number, model_name, 
+                                   data_set=data_set,Lnorm=Lnorm,neptune_run=neptune_run)
+
     etime = datetime.datetime.now()
     print(f'use time:{etime-stime}s')
+
+
+
+    if not args.no_neptune:
+        neptune_run.stop()
+
+
+
+
+
 
 if __name__ == '__main__':
 
@@ -1146,7 +1301,7 @@ if __name__ == '__main__':
     # main('AAA',model_name="LBGAT_34_10_100", average_number=1000)
     # main('AAA',model_name="LBGAT_34_20_100", average_number=1000)
     # # TRADES,MART,Feature_Scatter,adv_inter,adv_regular,awp_28_10,awp_34_10,fbtf,geometry,hydra,hyer_embe,level_sets,mma,overfit,pre_train,proxy_dist
-    # main('AAA',model_name="TRADES", average_number=500)
+    main('AAA',model_name="TRADES", average_number=500)
     # main('AAA',model_name="MART", average_number=1000)
     # main('AAA',model_name="Feature_Scatter", average_number=1000)
     # main('AAA',model_name="adv_inter", average_number=1000)
@@ -1181,7 +1336,7 @@ if __name__ == '__main__':
     # main('AAA',model_name="DARI_ShuffleNet_L2", average_number=1000)
     # # DARI_mobilenet_L2,TRADES_mnist,ULAT_mnist,Standard_imagenet,robustness_imagenet
     # main('AAA',model_name="DARI_mobilenet_L2", average_number=1000)
-    main('AAA',model_name="TRADES_mnist", average_number=1000)
+    # main('AAA',model_name="TRADES_mnist", average_number=1000)
     # main('AAA',model_name="ULAT_mnist", average_number=1000)
     # main('AAA',model_name="Standard_imagenet", average_number=1000)
     # main('AAA',model_name="robustness_imagenet", average_number=1000)

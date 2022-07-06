@@ -7,3 +7,6 @@ mnist_adv/*
 __pycache__/
 *.pyc
 model_weights/*
+
+keys/*
+numpy_datasets/*
